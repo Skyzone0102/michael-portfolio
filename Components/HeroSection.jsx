@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, GraduationCap, Github, Linkedin, FileText, Instagram } from 'lucide-react';
+import profileImage from '../src/assets/square_profile.jpg';
 
 export default function HeroSection() {
   const socialLinks = [
@@ -40,14 +41,10 @@ export default function HeroSection() {
             <div className="w-64 h-64 rounded-full mb-6 overflow-hidden bg-[#1E2228] border border-[#2A3038]">
               {/* Replace the src below with your actual image path */}
               <img 
-                src="/src/assets/square_profile.jpg" 
+                src={profileImage} 
                 alt="Chih-Hao Chou" 
                 className="w-full h-full object-cover -translate-y-2 scale-110"
               />
-              {/* Fallback if image doesn't load */}
-              {/* <div className="w-full h-full flex items-center justify-center text-[#5A5E6B] text-sm">
-                Photo
-              </div> */}
             </div>
 
             {/* Name */}
