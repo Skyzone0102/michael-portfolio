@@ -36,7 +36,7 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-start">
           {/* Left Column - 1/3 width */}
-          <div className="md:col-span-1 flex flex-col items-center justify-center">
+          <div className="md:col-span-1 flex flex-col items-center justify-center md:mt-16">
             {/* Profile Picture */}
             <div className="w-64 h-64 rounded-full mb-6 overflow-hidden bg-[#1E2228] border border-[#2A3038]">
               {/* Replace the src below with your actual image path */}
@@ -113,7 +113,7 @@ export default function HeroSection() {
               <a href="https://www.itri.org.tw/english/index.aspx" className="text-[#A8C7FA] hover:underline">ITRI</a>
               {' '}and a Technology Development Intern at {' '}
               <a href="https://ursrobot.ai/" className="text-[#A8C7FA] hover:underline">URS Robot Inc.</a>
-              , where I deployed ROS 2 systems, computer vision algorithms, and AI-based segmentation in real-world environments.
+              , where I deployed ROS 2 systems, computer vision algorithms, and image segmentation in real-world environments.
             </p>
 
             {/* Interests and Education Grid */}

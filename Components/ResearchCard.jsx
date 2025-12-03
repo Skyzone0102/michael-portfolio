@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from '@/utils';
 
-export default function ResearchCard({ title, description, pageName, emoji = '🔬', pdfLink, videoLink, codeLink }) {
+export default function ResearchCard({ title, description, pageName, emoji = '🔬', pdfLink, videoLink, codeLink, imageSrc }) {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -17,9 +17,17 @@ export default function ResearchCard({ title, description, pageName, emoji = '�
   };
   const imageContent = (
     <div className="rounded-3xl overflow-hidden aspect-video flex-shrink-0 bg-[#1E2228] border border-[#2A3038]">
-      <div className="w-full h-full flex items-center justify-center text-[#5A5E6B] text-sm">
-        Photo
-      </div>
+      {imageSrc ? (
+        <img 
+          src={imageSrc} 
+          alt={title}
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-[#5A5E6B] text-sm">
+          Photo
+        </div>
+      )}
     </div>
   );
 

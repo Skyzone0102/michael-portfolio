@@ -27,7 +27,39 @@ export default function Portfolio() {
       title: "Ascend (Autonomous Stair Climbing and Escort for Navigation and Delivery)",
       description: "Designed mobile robot with human-following and stair-climbing via dual-chassis structure and RRR manipulator.",
       emoji: "🎯",
-      tags: ["Robotics"]
+      tags: ["Robotics"],
+      layoutStyle: 'detailed', // Options: 'detailed', 'compact', 'minimal', 'default'
+      overview: "ASCEND is an autonomous mobile robot designed for last-mile delivery in multi-story buildings. It combines stair-climbing capabilities with human-following algorithms for complex urban environments.",
+      keyFeatures: [
+        "Dual-chassis structure with RRR manipulator for dynamic balance",
+        "YOLOv8-based human detection and tracking",
+        "Autonomous stair navigation with real-time pose estimation",
+        "ROS 2 control architecture with 50Hz response rate"
+      ],
+      technicalDetails: {
+        sections: [
+          {
+            title: "Mechanical Design",
+            content: "Dual-chassis structure with independent front/rear wheel control. 3-DOF RRR manipulator enables pitch adjustment during climbing. Four DC motors for wheels, three servos for manipulator."
+          },
+          {
+            title: "Human Following System",
+            content: "YOLOv8 detects persons, MediaPipe estimates pose. Maintains 1-2m following distance through velocity adjustment and bounding box tracking."
+          },
+          {
+            title: "Stair Climbing",
+            content: "Three-phase approach: front climbs while rear supports, manipulator adjusts pitch, rear follows. Ultrasonic sensors detect edges, IMU maintains balance."
+          }
+        ]
+      },
+      results: [
+        "Successfully climbed 18cm rise stairs",
+        "95% human tracking accuracy",
+        "45-minute battery operation"
+      ],
+      technologies: ["ROS 2", "YOLOv8", "MediaPipe", "Raspberry Pi", "ESP32", "OpenCV", "Python", "C++"],
+      duration: "Sep 2023 - Jan 2024",
+      teamSize: "4 members"
     },
     {
       title: "Robotic BackFlip Cat",
@@ -120,7 +152,7 @@ export default function Portfolio() {
                 emoji="🤖"
                 pdfLink="#"
                 videoLink="#"
-                codeLink="#"
+                imageSrc="/michael-portfolio/src/assets/sphere/spherical_robot.jpeg"
               />
             </motion.div>
             
@@ -137,6 +169,7 @@ export default function Portfolio() {
                 emoji="⚙️"
                 pdfLink="#"
                 videoLink="#"
+                imageSrc="/michael-portfolio/src/assets/rabbit/rabbit_group.jpg"
               />
             </motion.div>
           </div>
