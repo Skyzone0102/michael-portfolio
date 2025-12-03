@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import { createPageUrl } from '@/utils';
 import actualRobotImg from '../src/assets/sphere/1_actual_robot (1).jpg';
 import cadImg from '../src/assets/sphere/2_a_cad.png';
+import exp1Img from '../src/assets/sphere/exp1.JPG';
+import exp2Img from '../src/assets/sphere/exp2.JPG';
+import exp3Img from '../src/assets/sphere/exp3.JPG';
 
 export default function ResearchPendulumRobot() {
   return (
@@ -227,7 +230,7 @@ export default function ResearchPendulumRobot() {
                 The closed-loop velocity controller reduced the Integral of Absolute Error (IAE) by 87.1% compared to open-loop control, effectively eliminating unstable oscillations.
               </p>
               <div className="bg-[#1E2228] rounded-xl overflow-hidden aspect-video border border-[#363C48]">
-                <img src="/michael-portfolio/src/assets/sphere/exp1.JPG" alt="Stability Analysis Graph" className="w-full h-full object-contain" />
+                <img src={exp1Img} alt="Stability Analysis Graph" className="w-full h-full object-contain" />
               </div>
             </div>
 
@@ -251,7 +254,7 @@ export default function ResearchPendulumRobot() {
                 On deformable foam, the impulsive mode proved superior to standard driving, nearly doubling the success rate to 71.4% while reducing escape time by a factor of 7.4 (1.43s vs 10.64s)
               </p>
               <div className="bg-[#1E2228] rounded-xl overflow-hidden aspect-video border border-[#363C48]">
-                <img src="/michael-portfolio/src/assets/sphere/exp2.JPG" alt="Terrain Escape Data & Charts" className="w-full h-full object-contain" />
+                <img src={exp2Img} alt="Terrain Escape Data & Charts" className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
@@ -273,7 +276,7 @@ export default function ResearchPendulumRobot() {
                 </p>
               </div>
               <div className="bg-[#1E2228] rounded-xl overflow-hidden aspect-video border border-[#363C48]">
-                <img src="/michael-portfolio/src/assets/sphere/exp3.JPG" alt="Trajectory Test Results" className="w-full h-full object-contain" />
+                <img src={exp3Img} alt="Trajectory Test Results" className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
