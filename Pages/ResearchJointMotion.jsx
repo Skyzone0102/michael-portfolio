@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, FileText, Video, BookOpen } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from '@/utils';
+import rabbitRealImg from '../src/assets/rabbit/rabbit_real.png';
+import rabbitCadImg from '../src/assets/rabbit/rabbit_cad.png';
+import rabbitResultImg from '../src/assets/rabbit/rabbit_result.png';
 
 export default function ResearchJointMotion() {
   return (
@@ -53,7 +56,7 @@ export default function ResearchJointMotion() {
           <div className="bg-[#1E2228] p-6 rounded-3xl">
             <div className="rounded-2xl overflow-hidden border border-[#2A3038] bg-white p-4">
               <img 
-                src="/michael-portfolio/src/assets/rabbit/rabbit_real.png" 
+                src={rabbitRealImg} 
                 alt="Smart Cadaveric Limb Motion Simulator" 
                 className="w-full h-full object-contain"
               />
@@ -118,7 +121,7 @@ export default function ResearchJointMotion() {
             {/* System photo placeholder */}
             <div className="rounded-2xl overflow-hidden border border-[#2A3038] flex items-center justify-center bg-white p-6">
               <img 
-                src="/michael-portfolio/src/assets/rabbit/rabbit_cad.png" 
+                src={rabbitCadImg} 
                 alt="System CAD Design" 
                 className="w-full h-auto object-contain"
               />
@@ -231,7 +234,7 @@ export default function ResearchJointMotion() {
           {/* Results Image Placeholder */}
           <div className="bg-white rounded-3xl border border-[#363C48] mb-8 p-6">
             <img 
-              src="/michael-portfolio/src/assets/rabbit/rabbit_result.png" 
+              src={rabbitResultImg} 
               alt="Experimental Results" 
               className="w-full h-auto object-contain"
             />

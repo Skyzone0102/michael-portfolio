@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, FileText, Video, Award, BookOpen } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from '@/utils';
+import actualRobotImg from '../src/assets/sphere/1_actual_robot (1).jpg';
+import cadImg from '../src/assets/sphere/2_a_cad.png';
 
 export default function ResearchPendulumRobot() {
   return (
@@ -70,7 +72,7 @@ export default function ResearchPendulumRobot() {
           <div className="bg-[#1E2228] p-6 rounded-3xl">
             <div className="rounded-2xl overflow-hidden border border-[#2A3038]">
               <img 
-                src="/michael-portfolio/src/assets/sphere/1_actual_robot (1).jpg" 
+                src={actualRobotImg} 
                 alt="Mosphero Spherical Robot" 
                 className="w-full h-full object-cover"
               />
@@ -135,7 +137,7 @@ export default function ResearchPendulumRobot() {
             {/* Hardware photo */}
             <div className="rounded-2xl overflow-hidden border border-[#2A3038] flex items-center justify-center bg-white">
               <img 
-                src="/michael-portfolio/src/assets/sphere/2_a_cad.png" 
+                src={cadImg} 
                 alt="Hardware Components CAD" 
                 className="w-full h-auto object-contain"
               />

@@ -5,6 +5,8 @@ import HeroSection from '../Components/HeroSection';
 import ResearchCard from '../Components/ResearchCard';
 import ProjectCard from '../Components/ProjectCard';
 import ProjectModal from '../Components/ProjectModal';
+import sphericalRobotImg from '../src/assets/sphere/spherical_robot.jpeg';
+import rabbitGroupImg from '../src/assets/rabbit/rabbit_group.jpg';
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -152,7 +154,7 @@ export default function Portfolio() {
                 emoji="🤖"
                 pdfLink="#"
                 videoLink="#"
-                imageSrc="/michael-portfolio/src/assets/sphere/spherical_robot.jpeg"
+                imageSrc={sphericalRobotImg}
               />
             </motion.div>
             
@@ -169,7 +171,7 @@ export default function Portfolio() {
                 emoji="⚙️"
                 pdfLink="#"
                 videoLink="#"
-                imageSrc="/michael-portfolio/src/assets/rabbit/rabbit_group.jpg"
+                imageSrc={rabbitGroupImg}
               />
             </motion.div>
           </div>
