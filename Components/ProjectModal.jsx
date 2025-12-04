@@ -74,7 +74,7 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Main Image Placeholder */}
-          {layoutStyle !== 'minimal' && (
+          {layoutStyle !== 'minimal' && layoutStyle !== 'custom-two-part' && (
             <div className="rounded-3xl mb-8 overflow-hidden aspect-video bg-[#1E2228] border border-[#2A3038]">
               <div className="w-full h-full flex items-center justify-center text-[#5A5E6B] text-sm">
                 Project Image
@@ -167,6 +167,148 @@ export default function ProjectModal({ project, onClose }) {
                         <span
                           key={index}
                           className="px-3 py-1.5 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
+          ) : layoutStyle === 'custom-two-part' ? (
+            <>
+              {/* Custom Two-Part Layout */}
+              {/* Overview Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Overview</h3>
+                  <p className="text-[#C4C6D0] leading-relaxed text-base">
+                    {project.technicalDetails?.sections?.find(s => s.title === 'Overview')?.content || project.overview}
+                  </p>
+                </div>
+              </div>
+
+              {/* Part 1 Section */}
+              {project.technicalDetails?.sections?.find(s => s.title.includes('Module 1')) && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    {/* Part 1 Title */}
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">
+                      {project.technicalDetails.sections.find(s => s.title.includes('Module 1')).title}
+                    </h3>
+                    
+                    {/* Part 1 Image */}
+                    <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] mb-6 p-4 min-h-[300px]">
+                      {project.part1Image ? (
+                        <img 
+                          src={project.part1Image} 
+                          alt="Part 1 - SLAM & Localization" 
+                          className="w-full h-full object-contain"
+                          onError={(e) => console.error('Image load error:', e)}
+                        />
+                      ) : (
+                        <div className="w-full h-full min-h-[300px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                          Part 1 Image
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Part 1 Details */}
+                    <div className="prose prose-invert max-w-none">
+                      {project.technicalDetails.sections.find(s => s.title.includes('Module 1')).content.split('\n\n').map((paragraph, idx) => (
+                        <div key={idx} className="mb-4 last:mb-0">
+                          {paragraph.split('\n').map((line, lineIdx) => {
+                            if (line.startsWith('•')) {
+                              return (
+                                <div key={lineIdx} className="flex items-start mt-3">
+                                  <span className="text-[#C4C6D0] mr-3 mt-1 flex-shrink-0">•</span>
+                                  <span className="text-[#C4C6D0] text-sm leading-relaxed">{line.substring(1).trim()}</span>
+                                </div>
+                              );
+                            }
+                            return <p key={lineIdx} className="text-[#E2E2E6] font-medium text-base mb-2">{line}</p>;
+                          })}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Part 2 Section */}
+              {project.technicalDetails?.sections?.find(s => s.title.includes('Module 2')) && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    {/* Part 2 Title */}
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">
+                      {project.technicalDetails.sections.find(s => s.title.includes('Module 2')).title}
+                    </h3>
+                    
+                    {/* Part 2 Image */}
+                    <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] mb-6 p-4 min-h-[300px]">
+                      {project.part2Image ? (
+                        <img 
+                          src={project.part2Image} 
+                          alt="Part 2 - Semantic Scene Understanding" 
+                          className="w-full h-full object-contain"
+                          onError={(e) => console.error('Image load error:', e)}
+                        />
+                      ) : (
+                        <div className="w-full h-full min-h-[300px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                          Part 2 Image
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Part 2 Details */}
+                    <div className="prose prose-invert max-w-none">
+                      {project.technicalDetails.sections.find(s => s.title.includes('Module 2')).content.split('\n\n').map((paragraph, idx) => (
+                        <div key={idx} className="mb-4 last:mb-0">
+                          {paragraph.split('\n').map((line, lineIdx) => {
+                            if (line.startsWith('•')) {
+                              return (
+                                <div key={lineIdx} className="flex items-start mt-3">
+                                  <span className="text-[#C4C6D0] mr-3 mt-1 flex-shrink-0">•</span>
+                                  <span className="text-[#C4C6D0] text-sm leading-relaxed">{line.substring(1).trim()}</span>
+                                </div>
+                              );
+                            }
+                            return <p key={lineIdx} className="text-[#E2E2E6] font-medium text-base mb-2">{line}</p>;
+                          })}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Results & Technologies */}
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                {/* Results */}
+                {project.results && (
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Results</h3>
+                    <ul className="space-y-3">
+                      {project.results.map((result, index) => (
+                        <li key={index} className="flex items-start group">
+                          <span className="text-[#6DD58C] mr-3 mt-1 flex-shrink-0 text-lg group-hover:scale-125 transition-transform">✓</span>
+                          <span className="text-[#C4C6D0] text-sm leading-relaxed">{result}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Technologies */}
+                {project.technologies && (
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0] hover:bg-[#363C48] hover:text-[#E2E2E6] transition-all hover:scale-105 cursor-default"
                         >
                           {tech}
                         </span>

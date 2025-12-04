@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ProjectCard({ title, description, emoji = '🚀', tags = [], onClick, selectedTag }) {
+export default function ProjectCard({ title, description, emoji = '🚀', tags = [], onClick, selectedTag, imageSrc }) {
   return (
     <div 
       onClick={onClick}
@@ -8,9 +8,17 @@ export default function ProjectCard({ title, description, emoji = '🚀', tags =
     >
       {/* Project Image/Placeholder */}
       <div className="rounded-3xl mb-4 overflow-hidden transition-all duration-300 aspect-[16/9] bg-[#16191F] border border-[#2A3038]">
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="text-[#5A5E6B] text-sm">Photo</div>
-        </div>
+        {imageSrc ? (
+          <img 
+            src={imageSrc} 
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="text-[#5A5E6B] text-sm">Photo</div>
+          </div>
+        )}
       </div>
 
       {/* Project Title */}

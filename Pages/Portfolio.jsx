@@ -7,6 +7,9 @@ import ProjectCard from '../Components/ProjectCard';
 import ProjectModal from '../Components/ProjectModal';
 import sphericalRobotImg from '../src/assets/sphere/spherical_robot.jpeg';
 import rabbitGroupImg from '../src/assets/rabbit/rabbit_group.jpg';
+import amrSlamImg from '../src/assets/mobile_robot/amr_slam.png';
+import amrSegImg from '../src/assets/mobile_robot/amr_seg.png';
+import amrCollectImg from '../src/assets/mobile_robot/amr_collect.jpg';
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -17,13 +20,66 @@ export default function Portfolio() {
       title: "Street Sweeping Mobile Robot",
       description: "Implemented SLAM using Fast-LIO and NDT, applied semantic segmentation with Open3D-ML, trained PointPillars model.",
       emoji: "🤖",
-      tags: ["Robotics"]
+      tags: ["Robotics", "AI"],
+      layoutStyle: 'custom-two-part',
+      overview: "A two-part research project developing advanced autonomous navigation and semantic understanding capabilities for mobile robots and autonomous vehicles.",
+      imageSrc: amrCollectImg,
+      part1Image: amrSlamImg,
+      part2Image: amrSegImg,
+      technicalDetails: {
+        sections: [
+          {
+            title: "Overview",
+            content: "This project establishes a versatile \"autonomous backbone\" for mobile robotics, designed to provide fundamental intelligence independent of specific deployment tasks. By integrating robust SLAM for precision localization with deep learning-based semantic segmentation, the system enables robots to map, locate, and interpret complex environments in real-time."
+          },
+          {
+            title: "Module 1: SLAM & Localization",
+            content: "A navigation system implemented on the 'iAuto' mobile robot platform to achieve autonomous mapping and localization in indoor environments.\n\nTechnical Implementation:\n• Hardware Setup: Ouster 64 LiDAR sensor mounted on the mobile base to capture high-resolution 3D environmental data.\n• Mapping (FastLIO): Deployed the FastLIO algorithm to generate high-fidelity 3D point cloud maps. The system visualizes the static 'built map' (displayed in blue) contrasted with real-time point cloud scans (displayed in color) to verify mapping consistency.\n• Localization (NDT): Implemented Normal Distributions Transform (NDT) Localization to estimate the robot's pose within the pre-built map with high precision."
+          },
+          {
+            title: "Module 2: Semantic Segmentation",
+            content: "A research initiative focused on building semantic LiDAR maps to enhance environmental understanding for autonomous vehicles.\n\nMethodology:\n• Data Collection: A golf cart equipped with 3D LiDAR was driven around campus to collect large-scale real-world datasets.\n• Semantic Segmentation: Utilized the Open3D-ML package to process the raw point cloud data. The pipeline performs semantic segmentation to classify distinct objects (e.g., vegetation, buildings, roads).\n• Model Comparison: Evaluated two state-of-the-art deep learning models: RandLA-Net and KPConv.\n• Result: The comparative analysis demonstrated that KPConv achieved superior segmentation performance compared to RandLA-Net for this specific application."
+          }
+        ]
+      },
+      results: [
+        "Successfully generated high-fidelity 3D indoor maps with FastLIO",
+        "Achieved high-precision NDT localization on iAuto platform",
+        "Collected large-scale campus dataset with golf cart platform",
+        "KPConv outperformed RandLA-Net in semantic segmentation accuracy"
+      ],
+      technologies: ["ROS", "RViz", "Ouster 64 LiDAR", "FastLIO", "NDT Localization", "Open3D-ML", "RandLA-Net", "KPConv", "Python"],
+      duration: "Research Project"
     },
     {
       title: "Aero Rider (Capstone Project)",
       description: "Led team to design autonomous wind-powered vehicle with PD control, IMU fusion, and dual sail steering system.",
       emoji: "✈️",
-      tags: ["Robotics", "Mechatronics"]
+      tags: ["Robotics", "Mechatronics"],
+      layoutStyle: 'detailed',
+      overview: "A wind-energy-driven vehicle designed to navigate a complex course with varying wind directions and friction zones. The system features a mechanical chassis capable of harvesting wind energy to drive motion and adapt its configuration for stability.",
+      technicalDetails: {
+        sections: [
+          {
+            title: "Mechanical Design & Analysis",
+            content: "Conducted rigorous mechanical analysis, including Von Mises Stress analysis on the chassis components to ensure structural integrity under load."
+          },
+          {
+            title: "Physics Modeling",
+            content: "Calculated the required wind sail specifications based on rolling friction coefficients ($D \\ge f = 0.627N$) and aerodynamic drag ($A = 0.211 m^2$) to optimize propulsion."
+          },
+          {
+            title: "Control System",
+            content: "Implemented PID control to stabilize the mechanism and optimize the vehicle's response to changing wind conditions."
+          },
+          {
+            title: "Testing Environment",
+            content: "Validated the robot on a custom track featuring specific wind angles ($45^\\circ$, $75^\\circ$) and variable terrain friction."
+          }
+        ]
+      },
+      technologies: ["SolidWorks", "FEA/Stress Analysis", "PID Control", "Mechanism Design"],
+      duration: "Capstone Project"
     },
     {
       title: "Ascend (Autonomous Stair Climbing and Escort for Navigation and Delivery)",
@@ -87,18 +143,18 @@ export default function Portfolio() {
       emoji: "⚓",
       tags: ["Robotics"]
     },
-    {
-      title: "Drone-Based Waste Management",
-      description: "Collaborated on business proposal for drone-based robotic system improving garbage collection efficiency for aging communities.",
-      emoji: "🚁",
-      tags: ["Autonomous"]
-    },
-    {
-      title: "Electric Vehicle Design",
-      description: "Completed specialization program in Design & Practice of Electric Vehicles, focusing on system integration and control.",
-      emoji: "⚡",
-      tags: ["Mechatronics"]
-    }
+    // {
+    //   title: "Drone-Based Waste Management",
+    //   description: "Collaborated on business proposal for drone-based robotic system improving garbage collection efficiency for aging communities.",
+    //   emoji: "🚁",
+    //   tags: ["Autonomous"]
+    // },
+    // {
+    //   title: "Electric Vehicle Design",
+    //   description: "Completed specialization program in Design & Practice of Electric Vehicles, focusing on system integration and control.",
+    //   emoji: "⚡",
+    //   tags: ["Mechatronics"]
+    // }
   ];
 
   // Extract all unique tags
@@ -165,7 +221,7 @@ export default function Portfolio() {
               viewport={{ once: true }}
             >
               <ResearchCard
-                title="Experimental Platform for Simulating PIP Joint Movement"
+                title="Data-Driven Kinematic Stability Assessment for Artifical Joints "
                 description="Engineered motion simulator with force sensors and kinematic tracking, developed PCA/K-means pipeline for tissue analysis in small joint surgery."
                 pageName="ResearchJointMotion"
                 emoji="⚙️"
@@ -229,6 +285,7 @@ export default function Portfolio() {
                     emoji={project.emoji}
                     tags={project.tags}
                     selectedTag={selectedTag}
+                    imageSrc={project.imageSrc}
                     onClick={() => setSelectedProject(project)}
                   />
                 </motion.div>
