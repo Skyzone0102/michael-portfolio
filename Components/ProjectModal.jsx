@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, ExternalLink, Github, Youtube, Calendar, Users } from 'lucide-react';
+import { X, ExternalLink, Github, Youtube, Calendar, Users, FileText } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 export default function ProjectModal({ project, onClose }) {
@@ -50,9 +50,11 @@ export default function ProjectModal({ project, onClose }) {
             <h2 className="text-4xl md:text-5xl font-bold text-[#E2E2E6] mb-4">
               {project.title}
             </h2>
-            <p className="text-[#C4C6D0] text-lg leading-relaxed">
-              {project.overview ? project.overview : project.description}
-            </p>
+            {layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && (
+              <p className="text-[#C4C6D0] text-lg leading-relaxed">
+                {project.overview ? project.overview : project.description}
+              </p>
+            )}
 
             {/* Project Meta Info */}
             {(project.duration || project.teamSize) && (
@@ -74,7 +76,7 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Main Image Placeholder */}
-          {layoutStyle !== 'minimal' && layoutStyle !== 'custom-two-part' && (
+          {layoutStyle !== 'minimal' && layoutStyle !== 'custom-two-part' && layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && (
             <div className="rounded-3xl mb-8 overflow-hidden aspect-video bg-[#1E2228] border border-[#2A3038]">
               <div className="w-full h-full flex items-center justify-center text-[#5A5E6B] text-sm">
                 Project Image
@@ -318,6 +320,376 @@ export default function ProjectModal({ project, onClose }) {
                 )}
               </div>
             </>
+          ) : layoutStyle === 'aero-rider-custom' ? (
+            <>
+              {/* Aero Rider Custom Layout */}
+              {/* Overview Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Overview</h3>
+                  <p className="text-[#C4C6D0] leading-relaxed text-base">
+                    {project.overview}
+                  </p>
+                </div>
+              </div>
+
+              {/* Rules and Rule Photo - Double Column */}
+              {project.competitionRules && (
+                <div className="mb-10">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Rules Text */}
+                    <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                      <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Competition Rules & Constraints</h3>
+                      <p className="text-[#C4C6D0] leading-relaxed text-sm mb-4">
+                        {project.competitionRules.description}
+                      </p>
+                      <ul className="space-y-3">
+                        {project.competitionRules.constraints.map((constraint, index) => (
+                          <li key={index} className="flex items-start">
+                            <span className="text-[#A8C7FA] mr-3 mt-1 flex-shrink-0">•</span>
+                            <span className="text-[#C4C6D0] text-sm leading-relaxed">{constraint}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Track Photo */}
+                    <div className="rounded-3xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                      {project.competitionRules.trackImage ? (
+                        <img 
+                          src={project.competitionRules.trackImage} 
+                          alt="Track Layout" 
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <div className="w-full h-full min-h-[300px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                          Track Layout Image
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Mechanical Design Photo - Full Width */}
+              {project.mechanicalDesign && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Mechanical Design</h3>
+                    <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                      {project.mechanicalDesign.description}
+                    </p>
+
+                    {/* Full Width Image */}
+                    <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] mb-6 p-4">
+                      {project.mechanicalDesign.image ? (
+                        <img 
+                          src={project.mechanicalDesign.image} 
+                          alt="Mechanical Design" 
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                          Mechanical Design Image
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Design Details */}
+                    <ul className="space-y-3">
+                      {project.mechanicalDesign.details.map((detail, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-[#A8C7FA] mr-3 mt-1 flex-shrink-0">•</span>
+                          <span className="text-[#C4C6D0] text-sm leading-relaxed">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+
+              {/* Control System (2/3) and Video (1/3) */}
+              {project.controlSystem && (
+                <div className="mb-10">
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {/* Control System - 2/3 width */}
+                    <div className="md:col-span-2 bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                      <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Control System</h3>
+                      <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                        {project.controlSystem.description}
+                      </p>
+
+                      {/* Sensors */}
+                      <div className="mb-6">
+                        <h4 className="text-lg font-semibold text-[#E2E2E6] mb-3">Sensors:</h4>
+                        <ul className="space-y-2">
+                          {project.controlSystem.sensors.map((sensor, index) => (
+                            <li key={index} className="flex items-start">
+                              <span className="text-[#A8C7FA] mr-3 mt-1 flex-shrink-0">•</span>
+                              <span className="text-[#C4C6D0] text-sm leading-relaxed">{sensor}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Logic */}
+                      <div>
+                        <h4 className="text-lg font-semibold text-[#E2E2E6] mb-3">Logic:</h4>
+                        <p className="text-[#C4C6D0] text-sm leading-relaxed">
+                          {project.controlSystem.logic}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Video - 1/3 width, vertical format */}
+                    <div className="rounded-3xl overflow-hidden bg-[#1E2228] border border-[#2A3038]">
+                      {project.controlSystem.video ? (
+                        project.controlSystem.video.includes('youtube.com') || project.controlSystem.video.includes('youtu.be') ? (
+                          <iframe
+                            src={project.controlSystem.video.replace('youtube.com/shorts/', 'youtube.com/embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                            className="w-full h-full min-h-[500px]"
+                            style={{ aspectRatio: '9/16' }}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        ) : (
+                          <video 
+                            src={project.controlSystem.video}
+                            controls
+                            className="w-full h-full object-cover"
+                            style={{ aspectRatio: '9/16' }}
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        )
+                      ) : (
+                        <div className="w-full h-full min-h-[500px] flex items-center justify-center text-[#5A5E6B] text-sm">
+                          Demo Video
+                          <br />
+                          (Vertical Format)
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="mb-8">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0] hover:bg-[#363C48] hover:text-[#E2E2E6] transition-all hover:scale-105 cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : layoutStyle === 'ascend-custom' ? (
+            <>
+              {/* ASCEND Custom Layout */}
+              {/* Overview Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Overview</h3>
+                  <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                    {project.overview}
+                  </p>
+                  
+                  {/* Key Features */}
+                  {project.keyFeatures && (
+                    <div className="mt-6">
+                      <ul className="space-y-3">
+                        {project.keyFeatures.map((feature, index) => (
+                          <li key={index} className="flex items-start">
+                            <span className="text-[#A8C7FA] mr-3 mt-1 flex-shrink-0">•</span>
+                            <span className="text-[#C4C6D0] text-sm leading-relaxed">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Design Section with Full Width Image */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Design</h3>
+                  
+                  {/* Full Width Design Image */}
+                  <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                    {project.design?.mainImage ? (
+                      <img 
+                        src={project.design.mainImage} 
+                        alt="Design Overview" 
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                        Design Image
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Human Following Logic - Text Only */}
+              {project.design?.humanFollowing && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">
+                      {project.design.humanFollowing.title}
+                    </h3>
+                    <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                      {project.design.humanFollowing.description}
+                    </p>
+
+                    <ul className="space-y-3">
+                      {project.design.humanFollowing.details.map((detail, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-[#A8C7FA] mr-3 mt-1 flex-shrink-0">•</span>
+                          <span className="text-[#C4C6D0] text-sm leading-relaxed">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+
+              {/* Trajectory Planning - Text Left, Image Right */}
+              {project.design?.trajectoryPlanning && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">
+                      {project.design.trajectoryPlanning.title}
+                    </h3>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Left: Text Content */}
+                      <div>
+                        <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                          {project.design.trajectoryPlanning.description}
+                        </p>
+
+                        <ul className="space-y-3">
+                          {project.design.trajectoryPlanning.details.map((detail, index) => (
+                            <li key={index} className="flex items-start">
+                              <span className="text-[#A8C7FA] mr-3 mt-1 flex-shrink-0">•</span>
+                              <span className="text-[#C4C6D0] text-sm leading-relaxed">{detail}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Right: Image */}
+                      <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                        {project.design.trajectoryPlanning.image ? (
+                          <img 
+                            src={project.design.trajectoryPlanning.image} 
+                            alt="Trajectory Planning" 
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <div className="w-full h-full min-h-[300px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                            Trajectory Planning Image
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Two Column Video Placeholders */}
+              {project.design && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Demo Videos</h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                    {/* Video 1 */}
+                    <div className="rounded-3xl overflow-hidden bg-[#1E2228] border border-[#2A3038]">
+                      {project.design.video1 ? (
+                        project.design.video1.includes('youtube.com') || project.design.video1.includes('youtu.be') ? (
+                          <iframe
+                            src={project.design.video1.replace('youtube.com/shorts/', 'youtube.com/embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                            className="w-full aspect-video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        ) : (
+                          <video 
+                            src={project.design.video1}
+                            controls
+                            className="w-full h-full object-cover"
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        )
+                      ) : (
+                        <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm">
+                          Demo Video 1
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Video 2 */}
+                    <div className="rounded-3xl overflow-hidden bg-[#1E2228] border border-[#2A3038]">
+                      {project.design.video2 ? (
+                        project.design.video2.includes('youtube.com') || project.design.video2.includes('youtu.be') ? (
+                          <iframe
+                            src={project.design.video2.replace('youtube.com/shorts/', 'youtube.com/embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                            className="w-full aspect-video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        ) : (
+                          <video 
+                            src={project.design.video2}
+                            controls
+                            className="w-full h-full object-cover"
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        )
+                      ) : (
+                        <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm">
+                          Demo Video 2
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="mb-8">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0] hover:bg-[#363C48] hover:text-[#E2E2E6] transition-all hover:scale-105 cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
           ) : layoutStyle === 'compact' ? (
             <>
               {/* Compact Layout - Single column with smaller sections */}
@@ -400,18 +772,31 @@ export default function ProjectModal({ project, onClose }) {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4">
-            <Button 
-              className="px-8 py-3 rounded-full text-sm font-medium transition-colors bg-[#A8C7FA] hover:bg-[#C5DAFC] text-[#062E6F] flex items-center"
-            >
-              <Github className="w-4 h-4 mr-2" />
-              GitHub Repository
-            </Button>
-            <Button 
-              className="px-8 py-3 rounded-full text-sm font-medium transition-colors bg-[#2A3038] hover:bg-[#363C48] text-[#E2E2E6] flex items-center"
-            >
-              <Youtube className="w-4 h-4 mr-2" />
-              Demo Video
-            </Button>
+            {project.reportPdf ? (
+              <Button 
+                className="px-8 py-3 rounded-full text-sm font-medium transition-colors bg-[#A8C7FA] hover:bg-[#C5DAFC] text-[#062E6F] flex items-center"
+                onClick={() => window.open(project.reportPdf, '_blank')}
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                View Report
+              </Button>
+            ) : (
+              <Button 
+                className="px-8 py-3 rounded-full text-sm font-medium transition-colors bg-[#A8C7FA] hover:bg-[#C5DAFC] text-[#062E6F] flex items-center"
+              >
+                <Github className="w-4 h-4 mr-2" />
+                GitHub Repository
+              </Button>
+            )}
+            {project.demoVideo && (
+              <Button 
+                className="px-8 py-3 rounded-full text-sm font-medium transition-colors bg-[#2A3038] hover:bg-[#363C48] text-[#E2E2E6] flex items-center"
+                onClick={() => window.open(project.demoVideo, '_blank')}
+              >
+                <Youtube className="w-4 h-4 mr-2" />
+                Demo Video
+              </Button>
+            )}
           </div>
         </div>
       </motion.div>

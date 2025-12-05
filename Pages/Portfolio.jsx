@@ -10,6 +10,13 @@ import rabbitGroupImg from '../src/assets/rabbit/rabbit_group.jpg';
 import amrSlamImg from '../src/assets/mobile_robot/amr_slam.png';
 import amrSegImg from '../src/assets/mobile_robot/amr_seg.png';
 import amrCollectImg from '../src/assets/mobile_robot/amr_collect.jpg';
+import aeroRuleImg from '../src/assets/aerorider/aero_rule.png';
+import aeroDesignImg from '../src/assets/aerorider/aero_design.png';
+import aeroPhotoImg from '../src/assets/aerorider/aero_photo.jpg';
+import aeroReportPdf from '../src/assets/aerorider/Final_Report.pdf';
+import ascendDesignImg from '../src/assets/ascend/ascend_design.png';
+import ascendTrajImg from '../src/assets/ascend/ascend_traj.png';
+import ascendPicImg from '../src/assets/ascend/ascend_pic.png';
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -55,67 +62,82 @@ export default function Portfolio() {
       title: "Aero Rider (Capstone Project)",
       description: "Led team to design autonomous wind-powered vehicle with PD control, IMU fusion, and dual sail steering system.",
       emoji: "✈️",
-      tags: ["Robotics", "Mechatronics"],
-      layoutStyle: 'detailed',
-      overview: "A wind-energy-driven vehicle designed to navigate a complex course with varying wind directions and friction zones. The system features a mechanical chassis capable of harvesting wind energy to drive motion and adapt its configuration for stability.",
-      technicalDetails: {
-        sections: [
-          {
-            title: "Mechanical Design & Analysis",
-            content: "Conducted rigorous mechanical analysis, including Von Mises Stress analysis on the chassis components to ensure structural integrity under load."
-          },
-          {
-            title: "Physics Modeling",
-            content: "Calculated the required wind sail specifications based on rolling friction coefficients ($D \\ge f = 0.627N$) and aerodynamic drag ($A = 0.211 m^2$) to optimize propulsion."
-          },
-          {
-            title: "Control System",
-            content: "Implemented PID control to stabilize the mechanism and optimize the vehicle's response to changing wind conditions."
-          },
-          {
-            title: "Testing Environment",
-            content: "Validated the robot on a custom track featuring specific wind angles ($45^\\circ$, $75^\\circ$) and variable terrain friction."
-          }
-        ]
+      tags: ["Robotics", "Mechatronics", "Hardware"],
+      layoutStyle: 'aero-rider-custom',
+      imageSrc: aeroPhotoImg,
+      overview: "Aero Rider is an autonomous, wind-powered vehicle developed for the 2024 Mechanical Engineering Capstone. The objective was to engineer a robot capable of navigating a complex track using only wind energy for propulsion and control. By integrating mechanical design with mechatronic systems, the vehicle adjusts its sail geometry in real-time to maintain stability and optimize trajectory against varying wind fields.",
+      competitionRules: {
+        description: "The design had to adhere to strict physical and operational constraints while navigating a 5-segment course containing slopes and \"untouchable\" grass zones.",
+        constraints: [
+          "Size Limit: 30cm × 21cm × 40cm (Length/Width/Height)",
+          "Weight Limit: Under 2 kg",
+          "Budget: < NTD 3000 for the electromechanical system",
+          "Navigation: Must rely entirely on external wind for propulsion; no internal drive motors allowed"
+        ],
+        trackImage: aeroRuleImg
       },
-      technologies: ["SolidWorks", "FEA/Stress Analysis", "PID Control", "Mechanism Design"],
-      duration: "Capstone Project"
+      mechanicalDesign: {
+        description: "The vehicle features a modular design optimized for high strength-to-weight ratio using Finite Element Analysis (FEA).",
+        details: [
+          "Chassis: Laser-cut MDF with a rib-plate structure to support the electromechanical load without deformation",
+          "Lifting Mechanism: Utilizes a custom rack-and-pinion system driven by a high-torque MG996R servo to elevate the sails 203mm into the wind field",
+          "Sail Configuration: A V-shaped (150°) dual-sail design prevents aerodynamic singularity. The sails feature L-bracket tips to increase the drag coefficient (Cd ≈ 1.36), maximizing propulsion in low-wind zones",
+          "Braking System: A servo-actuated PLA brake applies friction to the universal wheels, allowing for active speed control on slopes"
+        ],
+        image: aeroDesignImg
+      },
+      controlSystem: {
+        description: "To counteract external wind disturbances and maintain the target heading, the vehicle utilizes a closed-loop PD control system.",
+        sensors: [
+          "Custom Encoder: A 3D-printed transmissive optical encoder with suspension measures distance traveled",
+          "IMU (MPU-6050): Provides real-time Yaw (heading) feedback"
+        ],
+        logic: "An Arduino microcontroller compares the actual Yaw vs. the Desired Yaw (based on track segment). It uses a PD algorithm (Kp=15, Kd=0.4) to differentially adjust the left and right sail angles, creating yaw moments to steer the vehicle.",
+        video: "https://youtube.com/shorts/i9I9SLFesik"
+      },
+      technologies: ["Arduino", "SolidWorks", "FEA Analysis", "PD Control", "IMU (MPU-6050)", "Servo Control", "3D Printing", "Laser Cutting"],
+      duration: "2024 Capstone Project",
+      teamSize: "Team Project",
+      reportPdf: aeroReportPdf,
+      demoVideo: "https://youtube.com/shorts/i9I9SLFesik"
     },
     {
-      title: "Ascend (Autonomous Stair Climbing and Escort for Navigation and Delivery)",
+      title: "Stair Climbing Robot",
       description: "Designed mobile robot with human-following and stair-climbing via dual-chassis structure and RRR manipulator.",
       emoji: "🎯",
       tags: ["Robotics"],
-      layoutStyle: 'detailed', // Options: 'detailed', 'compact', 'minimal', 'default'
-      overview: "ASCEND is an autonomous mobile robot designed for last-mile delivery in multi-story buildings. It combines stair-climbing capabilities with human-following algorithms for complex urban environments.",
+      layoutStyle: 'ascend-custom',
+      imageSrc: ascendPicImg,
+      overview: "ASCEND (Autonomous Stair Climbing and Escort for Navigation and Delivery) is an articulated robot designed to autonomously transport heavy loads up stairs and track users on flat ground.",
       keyFeatures: [
-        "Dual-chassis structure with RRR manipulator for dynamic balance",
-        "YOLOv8-based human detection and tracking",
-        "Autonomous stair navigation with real-time pose estimation",
-        "ROS 2 control architecture with 50Hz response rate"
+        "Payload Delivery: Secure transport of items to reduce physical strain.",
+        "Escort Mode: Real-time human tracking for hands-free navigation.",
+        "Terrain Adaptation: An RRR manipulator design reconfigures geometry to climb standard stairs."
       ],
-      technicalDetails: {
-        sections: [
-          {
-            title: "Mechanical Design",
-            content: "Dual-chassis structure with independent front/rear wheel control. 3-DOF RRR manipulator enables pitch adjustment during climbing. Four DC motors for wheels, three servos for manipulator."
-          },
-          {
-            title: "Human Following System",
-            content: "YOLOv8 detects persons, MediaPipe estimates pose. Maintains 1-2m following distance through velocity adjustment and bounding box tracking."
-          },
-          {
-            title: "Stair Climbing",
-            content: "Three-phase approach: front climbs while rear supports, manipulator adjusts pitch, rear follows. Ultrasonic sensors detect edges, IMU maintains balance."
-          }
-        ]
+      design: {
+        mainImage: ascendDesignImg,
+        humanFollowing: {
+          title: "Human Following Logic",
+          description: "Navigation relies on a three-sensor HC-SR04 ultrasonic array to calculate real-time distance differentials:",
+          details: [
+            "Forward/Stop: Regulated by frontal distance thresholds (e.g., Front > Stop Dist triggers forward motion).",
+            "Steering: Direction determined by comparing lateral inputs (e.g., Left < Right triggers a Turn Left command).",
+            "Safety: Front < Min Distance triggers automatic reverse to prevent collisions."
+          ]
+        },
+        trajectoryPlanning: {
+          title: "Trajectory Planning",
+          description: "To ensure stability, we applied Inverse Kinematics (IK) to map five key poses along the climbing path, constraining the approach angle to 90° relative to the step.",
+          details: [
+            "Smoothing: MATLAB-generated Cubic Polynomials created smooth trajectories between poses (assuming zero initial/final velocity).",
+            "Execution: Coefficients were deployed to an Arduino controller, executing motion in 0.2-second segments to minimize jerk."
+          ],
+          image: ascendTrajImg
+        },
+        video1: "https://youtu.be/8E-kyqwOJFg",
+        video2: "https://youtu.be/1lo-rHRj5FE"
       },
-      results: [
-        "Successfully climbed 18cm rise stairs",
-        "95% human tracking accuracy",
-        "45-minute battery operation"
-      ],
-      technologies: ["ROS 2", "YOLOv8", "MediaPipe", "Raspberry Pi", "ESP32", "OpenCV", "Python", "C++"],
+      technologies: ["Arduino", "MATLAB", "Inverse Kinematics", "HC-SR04 Ultrasonic", "RRR Manipulator", "Cubic Polynomials", "C++"],
       duration: "Sep 2023 - Jan 2024",
       teamSize: "4 members"
     },
