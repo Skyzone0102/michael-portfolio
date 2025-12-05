@@ -50,7 +50,7 @@ export default function ProjectModal({ project, onClose }) {
             <h2 className="text-4xl md:text-5xl font-bold text-[#E2E2E6] mb-4">
               {project.title}
             </h2>
-            {layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && (
+            {layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && layoutStyle !== 'backflip-cat-custom' && layoutStyle !== 'locus-custom' && layoutStyle !== 'turf-ai-custom' && (
               <p className="text-[#C4C6D0] text-lg leading-relaxed">
                 {project.overview ? project.overview : project.description}
               </p>
@@ -76,7 +76,7 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Main Image Placeholder */}
-          {layoutStyle !== 'minimal' && layoutStyle !== 'custom-two-part' && layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && (
+          {layoutStyle !== 'minimal' && layoutStyle !== 'custom-two-part' && layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && layoutStyle !== 'backflip-cat-custom' && layoutStyle !== 'locus-custom' && layoutStyle !== 'turf-ai-custom' && (
             <div className="rounded-3xl mb-8 overflow-hidden aspect-video bg-[#1E2228] border border-[#2A3038]">
               <div className="w-full h-full flex items-center justify-center text-[#5A5E6B] text-sm">
                 Project Image
@@ -669,6 +669,480 @@ export default function ProjectModal({ project, onClose }) {
                   </div>
                 </div>
               </div>
+              )}
+
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="mb-8">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0] hover:bg-[#363C48] hover:text-[#E2E2E6] transition-all hover:scale-105 cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : layoutStyle === 'backflip-cat-custom' ? (
+            <>
+              {/* BackFlip Cat Custom Layout */}
+              {/* Overview Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Overview</h3>
+                  <p className="text-[#C4C6D0] leading-relaxed text-base">
+                    {project.overview}
+                  </p>
+                </div>
+              </div>
+
+              {/* Design Section with Image */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Design</h3>
+                  
+                  {/* Design Image */}
+                  <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                    {project.designImage ? (
+                      <img 
+                        src={project.designImage} 
+                        alt="Design Overview" 
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                        Insert Design Image
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Mechanism Section */}
+              {project.mechanism && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Mechanism</h3>
+                    
+                    <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                      {project.mechanism.description}
+                    </p>
+
+                    <ul className="space-y-3 mb-6">
+                      {project.mechanism.details.map((detail, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-[#A8C7FA] mr-3 mt-1 flex-shrink-0">•</span>
+                          <span className="text-[#C4C6D0] text-sm leading-relaxed">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Two Column Media Grid */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Photo */}
+                      <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                        {project.mechanism.photo ? (
+                          <img 
+                            src={project.mechanism.photo} 
+                            alt="Mechanism Photo" 
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                            Insert Photo
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Demo Video */}
+                      <div className="rounded-2xl overflow-hidden bg-[#1E2228] border border-[#2A3038]">
+                        {project.mechanism.video ? (
+                          project.mechanism.video.includes('youtube.com') || project.mechanism.video.includes('youtu.be') ? (
+                            <iframe
+                              src={project.mechanism.video.replace('youtube.com/shorts/', 'youtube.com/embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                              className="w-full aspect-video"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          ) : (
+                            <video 
+                              src={project.mechanism.video}
+                              controls
+                              className="w-full h-full object-cover"
+                            >
+                              Your browser does not support the video tag.
+                            </video>
+                          )
+                        ) : (
+                          <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm">
+                            Insert Demo Video
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Results Section - Two Column Layout */}
+              {project.results && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Results</h3>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Left Column: Demo Video */}
+                      <div>
+                        <h4 className="text-lg font-semibold text-[#E2E2E6] mb-4">Successful Backflip Demonstration</h4>
+                        <div className="rounded-3xl overflow-hidden bg-[#1E2228] border border-[#2A3038]">
+                          {project.results.demoVideo ? (
+                            project.results.demoVideo.includes('youtube.com') || project.results.demoVideo.includes('youtu.be') ? (
+                              <iframe
+                                src={project.results.demoVideo.replace('youtube.com/shorts/', 'youtube.com/embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                                className="w-full aspect-video"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              />
+                            ) : (
+                              <video 
+                                src={project.results.demoVideo}
+                                controls
+                                className="w-full h-full object-cover"
+                              >
+                                Your browser does not support the video tag.
+                              </video>
+                            )
+                          ) : (
+                            <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm">
+                              Insert Demo Video
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Right Column: Award Photo */}
+                      <div>
+                        <h4 className="text-lg font-semibold text-[#E2E2E6] mb-4">MakeNTU 2023 Best Popularity Award</h4>
+                        <div className="rounded-3xl overflow-hidden border border-[#2A3038]">
+                          {project.results.awardPhoto ? (
+                            <img 
+                              src={project.results.awardPhoto} 
+                              alt="Award Winning Photo" 
+                              className="w-full aspect-video object-cover object-center"
+                            />
+                          ) : (
+                            <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                              Insert Award Winning Photo
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="mb-8">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0] hover:bg-[#363C48] hover:text-[#E2E2E6] transition-all hover:scale-105 cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : layoutStyle === 'locus-custom' ? (
+            <>
+              {/* LOCUS Custom Layout */}
+              {/* Overview Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Overview</h3>
+                  <p className="text-[#C4C6D0] leading-relaxed text-base">
+                    {project.overview}
+                  </p>
+                </div>
+              </div>
+
+              {/* Design Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Design</h3>
+                  
+                  {/* Design Image */}
+                  <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                    {project.designImage ? (
+                      <img 
+                        src={project.designImage} 
+                        alt="Design Overview" 
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                        Insert Design Image
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Process Flowchart Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Process Flowchart</h3>
+                  
+                  {/* Flowchart Image */}
+                  <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                    {project.flowchartImage ? (
+                      <img 
+                        src={project.flowchartImage} 
+                        alt="Process Flowchart" 
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                        Insert Process Flowchart Image
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Results Section - Two Column Layout */}
+              {project.results && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Results</h3>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Left Column: Product Demo Video */}
+                      <div>
+                        <h4 className="text-lg font-semibold text-[#E2E2E6] mb-4">Product Demo Video</h4>
+                        <div className="rounded-3xl overflow-hidden bg-[#1E2228] border border-[#2A3038]">
+                          {project.results.demoVideo ? (
+                            project.results.demoVideo.includes('youtube.com') || project.results.demoVideo.includes('youtu.be') ? (
+                              <iframe
+                                src={project.results.demoVideo.replace('youtube.com/shorts/', 'youtube.com/embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                                className="w-full aspect-video"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              />
+                            ) : (
+                              <video 
+                                src={project.results.demoVideo}
+                                controls
+                                className="w-full h-full object-cover"
+                              >
+                                Your browser does not support the video tag.
+                              </video>
+                            )
+                          ) : (
+                            <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm">
+                              Insert Demo Video
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Right Column: Team Members Photo */}
+                      <div>
+                        <h4 className="text-lg font-semibold text-[#E2E2E6] mb-4">Team Members</h4>
+                        <div className="rounded-3xl overflow-hidden border border-[#2A3038]">
+                          {project.results.teamPhoto ? (
+                            <img 
+                              src={project.results.teamPhoto} 
+                              alt="Team Members Photo" 
+                              className="w-full aspect-video object-cover object-center"
+                            />
+                          ) : (
+                            <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                              Insert Team Members Photo
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="mb-8">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0] hover:bg-[#363C48] hover:text-[#E2E2E6] transition-all hover:scale-105 cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : layoutStyle === 'turf-ai-custom' ? (
+            <>
+              {/* Turf AI Custom Layout */}
+              {/* Overview Section with Image */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Overview</h3>
+                  <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                    {project.overview}
+                  </p>
+                  
+                  {/* System Overview Image */}
+                  <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                    {project.systemOverviewImage ? (
+                      <img 
+                        src={project.systemOverviewImage} 
+                        alt="System Overview" 
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                        Insert System Overview Image
+                        <br />
+                        (Robotic Mower, Sensors, & Heatmap Output)
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* System Pipeline Section */}
+              {project.systemPipeline && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">{project.systemPipeline.title}</h3>
+                    <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                      {project.systemPipeline.description}
+                    </p>
+
+                    {/* Operational Workflow Diagram */}
+                    <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                      {project.systemPipeline.image ? (
+                        <img 
+                          src={project.systemPipeline.image} 
+                          alt="Operational Workflow Diagram" 
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                          Insert Operational Workflow Diagram
+                          <br />
+                          (Start Mowing to Report)
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Data Challenge Section */}
+              {project.dataChallenge && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">{project.dataChallenge.title}</h3>
+                    <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                      {project.dataChallenge.description}
+                    </p>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-semibold text-[#E2E2E6] mb-3">Method:</h4>
+                      <p className="text-[#C4C6D0] text-sm leading-relaxed">
+                        {project.dataChallenge.method}
+                      </p>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-semibold text-[#E2E2E6] mb-3">Result:</h4>
+                      <p className="text-[#C4C6D0] text-sm leading-relaxed">
+                        {project.dataChallenge.result}
+                      </p>
+                    </div>
+
+                    {/* Auto-Labeling Process Diagram */}
+                    <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                      {project.dataChallenge.image ? (
+                        <img 
+                          src={project.dataChallenge.image} 
+                          alt="Auto-Labeling Process Diagram" 
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                          Insert Auto-Labeling Process Diagram
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Deep Learning Segmentation Section */}
+              {project.deepLearning && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">{project.deepLearning.title}</h3>
+                    <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                      {project.deepLearning.description}
+                    </p>
+
+                    <ul className="space-y-3 mb-6">
+                      {project.deepLearning.models.map((model, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-[#A8C7FA] mr-3 mt-1 flex-shrink-0">•</span>
+                          <span className="text-[#C4C6D0] text-sm leading-relaxed">{model}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-semibold text-[#E2E2E6] mb-3">Output:</h4>
+                      <p className="text-[#C4C6D0] text-sm leading-relaxed">
+                        {project.deepLearning.output}
+                      </p>
+                    </div>
+
+                    {/* Dual U-Net Architecture Flowchart */}
+                    <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                      {project.deepLearning.image ? (
+                        <img 
+                          src={project.deepLearning.image} 
+                          alt="Dual U-Net Model Architecture" 
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                          Insert Dual U-Net Model Architecture Flowchart
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
               )}
 
               {/* Technologies */}

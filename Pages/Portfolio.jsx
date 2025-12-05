@@ -17,6 +17,19 @@ import aeroReportPdf from '../src/assets/aerorider/Final_Report.pdf';
 import ascendDesignImg from '../src/assets/ascend/ascend_design.png';
 import ascendTrajImg from '../src/assets/ascend/ascend_traj.png';
 import ascendPicImg from '../src/assets/ascend/ascend_pic.png';
+import backflipDesignImg from '../src/assets/backflip_cat/backflip_design.png';
+import backflipMechImg from '../src/assets/backflip_cat/backflip_mech.png';
+import backflipAwardImg from '../src/assets/backflip_cat/backflip_award.jpg';
+import backflipProfileImg from '../src/assets/backflip_cat/backflip_profile.png';
+import locusProfileImg from '../src/assets/locus/locus_profile.png';
+import locusDesignImg from '../src/assets/locus/locus_design.png';
+import locusProcessImg from '../src/assets/locus/locus_process.png';
+import locusMemberImg from '../src/assets/locus/locus_member.jpg';
+import turfIntroImg from '../src/assets/turf/turf_intro.png';
+import turfPipelineImg from '../src/assets/turf/turf_pipeline.png';
+import turfLabelImg from '../src/assets/turf/turf_label.png';
+import turfModelImg from '../src/assets/turf/turf_model.png';
+import turfProfileImg from '../src/assets/turf/turf_profile.jpg';
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -145,19 +158,85 @@ export default function Portfolio() {
       title: "Robotic BackFlip Cat",
       description: "Engineered spring-loaded leg mechanism with motor-rope system to execute a backflip using Arduino control.",
       emoji: "🐱",
-      tags: ["Robotics"]
+      tags: ["Robotics", "Hardware"],
+      layoutStyle: 'backflip-cat-custom',
+      imageSrc: backflipProfileImg,
+      overview: "Developed during the 2023 MakeNTU competition, this project engineered a quadruped robot capable of performing a backflip. Inspired by a popular internet meme, the goal was to achieve dynamic movement using a novel mechanical design within a limited prototyping timeframe.",
+      designImage: backflipDesignImg,
+      mechanism: {
+        description: "To achieve the high instantaneous force required for a backflip using standard servos, the robot utilizes a spring-loaded energy storage system:",
+        details: [
+          "Energy Storage: Motors function as winches, reeling in a high-tensile line to compress the legs and store potential energy in rubber bands.",
+          "Quick Release: A custom sliding latch mechanism locks the energy in place. When triggered, the latch releases, instantly converting stored energy into kinetic force.",
+          "Materials: Built with carbon fiber tubes for high stiffness-to-weight ratio and PLA 3D-printed joints."
+        ],
+        photo: backflipMechImg,
+        video: "https://youtu.be/bVk0B_5wn6I"
+      },
+      results: {
+        achievements: [
+          "Successful Backflip Demonstration",
+          "MakeNTU 2023 Best Popularity Award"
+        ],
+        demoVideo: "https://youtu.be/g4Nv7dlcpFQ",
+        awardPhoto: backflipAwardImg
+      },
+      technologies: ["Arduino", "SolidWorks", "3D Printing", "Carbon Fiber", "Spring Mechanism", "Servo Control"],
+      duration: "MakeNTU 2023",
+      teamSize: "Team Project"
     },
     {
       title: "LOCUS",
       description: "Developed lockbox for timed focus with OpenCV face detection, water-mist deterrent, and immersive study modes.",
       emoji: "📦",
-      tags: ["Hardware"]
+      tags: ["Hardware"],
+      layoutStyle: 'locus-custom',
+      imageSrc: locusProfileImg,
+      overview: "LOCUS is a smart productivity device designed to combat smartphone addiction by physically securing the user's phone. It fosters deep work by creating immersive sensory environments—controlling music, lighting, and scent—while employing a gamified penalty system that sprays water and captures photos to deter users from giving up early.",
+      designImage: locusDesignImg,
+      flowchartImage: locusProcessImg,
+      results: {
+        demoVideo: "https://youtu.be/lL-lwjEfuKA",
+        teamPhoto: locusMemberImg
+      },
+      technologies: ["Arduino", "OpenCV", "Raspberry Pi", "Python", "Face Detection", "IoT"],
+      duration: "Course Project",
+      teamSize: "Team Project"
     },
     {
       title: "Turf AI",
       description: "Built ROS 2 turf monitoring system with AI segmentation, GNSS heatmaps, and dual U-Net models for grass analysis.",
       emoji: "🌱",
-      tags: ["AI", "Robotics"]
+      tags: ["AI", "Robotics"],
+      layoutStyle: 'turf-ai-custom',
+      imageSrc: turfProfileImg,
+      overview: "A University-Industry collaboration designed to generate comprehensive lawn health reports. The system utilizes a robotic mower equipped with Camera, GPS, and IMU sensors to survey turf during operation. The raw data is processed to produce high-resolution heatmaps indicating grass coverage and greenness levels for the client.",
+      systemOverviewImage: turfIntroImg,
+      systemPipeline: {
+        title: "System Pipeline",
+        description: "The automated workflow captures synchronized image, GPS, and IMU data while the robot mows. Images undergo cropping and perspective transformation before being processed by the model. Finally, the inference results are merged with spatial data to generate heatmaps and the final report.",
+        image: turfPipelineImg
+      },
+      dataChallenge: {
+        title: "The Data Challenge & Solution",
+        description: "Initial academic proposals suffered from vague labeling data and required frequent manual threshold adjustments for different environments. To solve this, I developed a robust Auto-Labeling Pipeline:",
+        method: "Utilized the ExG Index and double K-means clustering to automatically distinguish between green grass, withered grass, and dirt.",
+        result: "Generated high-precision ground truth masks automatically, eliminating the need for manual labeling or constant fine-tuning.",
+        image: turfLabelImg
+      },
+      deepLearning: {
+        title: "Deep Learning Segmentation",
+        description: "To improve prediction consistency, I implemented a Dual U-Net Architecture that segments the environment based on distinct visual features:",
+        models: [
+          "Model 1 (Color-based): Trained on green masks and RGB images to accurately segment healthy grass.",
+          "Model 2 (Shape-based): Trained on combined masks and grayscale images to identify withered grass based on texture and shape."
+        ],
+        output: "The models' outputs are combined with spatial data to generate the final analytical report.",
+        image: turfModelImg
+      },
+      technologies: ["ROS 2", "Python", "U-Net", "K-means Clustering", "ExG Index", "GPS", "IMU", "Deep Learning", "OpenCV"],
+      duration: "University-Industry Collaboration",
+      teamSize: "Team Project"
     },
     {
       title: "Harbor Safety System",
