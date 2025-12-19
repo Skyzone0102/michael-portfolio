@@ -8,6 +8,8 @@ import cadImg from '../src/assets/sphere/2_a_cad.png';
 import exp1Img from '../src/assets/sphere/exp1.JPG';
 import exp2Img from '../src/assets/sphere/exp2.JPG';
 import exp3Img from '../src/assets/sphere/exp3.JPG';
+import ralPdf from '../src/assets/2025_RAL_Mosphero.pdf';
+import arisPdf from '../src/assets/ARIS2025_Spherical_Robot.pdf';
 
 export default function ResearchPendulumRobot() {
   return (
@@ -29,7 +31,7 @@ export default function ResearchPendulumRobot() {
           
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="/michael-portfolio/src/assets/2025_RAL_Mosphero.pdf" target="_blank" rel="noopener noreferrer">
+            <a href={ralPdf} target="_blank" rel="noopener noreferrer">
               <Button 
                 className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-medium transition-colors bg-[#A8C7FA] hover:bg-[#C5DAFC] text-[#062E6F] border-0"
               >
@@ -313,7 +315,7 @@ Future work will extend the controller to closed-loop trajectory tracking, incor
                     IEEE Robotics and Automation Letters (RA-L), 2025
                   </p>
                 </div>
-                <a href="/michael-portfolio/src/assets/2025_RAL_Mosphero.pdf" target="_blank" rel="noopener noreferrer">
+                <a href={ralPdf} target="_blank" rel="noopener noreferrer">
                   <Button 
                     className="inline-flex items-center px-4 py-2 rounded-lg text-xs font-medium transition-colors bg-[#A8C7FA] hover:bg-[#C5DAFC] text-[#062E6F] border-0 flex-shrink-0"
                   >
@@ -338,7 +340,7 @@ Future work will extend the controller to closed-loop trajectory tracking, incor
                     International Conference on Advanced Robotics and Intelligent Systems (ARIS), 2025
                   </p>
                 </div>
-                <a href=" /michael-portfolio/src/assets/ARIS2025_Spherical_Robot.pdf" target="_blank" rel="noopener noreferrer">
+                <a href={arisPdf} target="_blank" rel="noopener noreferrer">
                   <Button 
                     className="inline-flex items-center px-4 py-2 rounded-lg text-xs font-medium transition-colors bg-[#A8C7FA] hover:bg-[#C5DAFC] text-[#062E6F] border-0 flex-shrink-0"
                   >

@@ -50,7 +50,7 @@ export default function ProjectModal({ project, onClose }) {
             <h2 className="text-4xl md:text-5xl font-bold text-[#E2E2E6] mb-4">
               {project.title}
             </h2>
-            {layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && layoutStyle !== 'backflip-cat-custom' && layoutStyle !== 'locus-custom' && layoutStyle !== 'turf-ai-custom' && (
+            {layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && layoutStyle !== 'backflip-cat-custom' && layoutStyle !== 'locus-custom' && layoutStyle !== 'turf-ai-custom' && layoutStyle !== 'harbor-safety-custom' && layoutStyle !== 'handsome-yoga-custom' && (
               <p className="text-[#C4C6D0] text-lg leading-relaxed">
                 {project.overview ? project.overview : project.description}
               </p>
@@ -76,7 +76,7 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Main Image Placeholder */}
-          {layoutStyle !== 'minimal' && layoutStyle !== 'custom-two-part' && layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && layoutStyle !== 'backflip-cat-custom' && layoutStyle !== 'locus-custom' && layoutStyle !== 'turf-ai-custom' && (
+          {layoutStyle !== 'minimal' && layoutStyle !== 'custom-two-part' && layoutStyle !== 'aero-rider-custom' && layoutStyle !== 'ascend-custom' && layoutStyle !== 'backflip-cat-custom' && layoutStyle !== 'locus-custom' && layoutStyle !== 'turf-ai-custom' && layoutStyle !== 'harbor-safety-custom' && layoutStyle !== 'handsome-yoga-custom' && (
             <div className="rounded-3xl mb-8 overflow-hidden aspect-video bg-[#1E2228] border border-[#2A3038]">
               <div className="w-full h-full flex items-center justify-center text-[#5A5E6B] text-sm">
                 Project Image
@@ -1140,6 +1140,207 @@ export default function ProjectModal({ project, onClose }) {
                           Insert Dual U-Net Model Architecture Flowchart
                         </div>
                       )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="mb-8">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0] hover:bg-[#363C48] hover:text-[#E2E2E6] transition-all hover:scale-105 cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : layoutStyle === 'handsome-yoga-custom' ? (
+            <>
+              {/* Handsome Yoga Custom Layout */}
+              {/* Overview Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Overview</h3>
+                  <p className="text-[#C4C6D0] leading-relaxed text-base">
+                    {project.overview}
+                  </p>
+                </div>
+              </div>
+
+              {/* Implementation Section */}
+              {project.technicalDetails && project.technicalDetails.sections && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">
+                      {project.technicalDetails.sections[0].title}
+                    </h3>
+                    <div className="text-[#C4C6D0] leading-relaxed text-base whitespace-pre-line">
+                      {project.technicalDetails.sections[0].content}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Results Section */}
+              {project.results && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Results</h3>
+                    <ul className="space-y-3 mb-8">
+                      {project.results.map((result, index) => (
+                        <li key={index} className="text-[#C4C6D0] flex leading-relaxed text-base">
+                          <span className="text-[#A8C7FA] mr-3 flex-shrink-0">•</span>
+                          <span>{result}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Demo Video and UI Showcase Side by Side */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Demo Video Placeholder */}
+                      <div>
+                        <h4 className="text-lg font-semibold text-[#E2E2E6] mb-4">Demo Video</h4>
+                        <div className="rounded-2xl overflow-hidden bg-[#0F1115] border border-[#2A3038]">
+                          {project.demoVideo ? (
+                            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                              <iframe
+                                src={project.demoVideo.includes('youtu.be') 
+                                  ? project.demoVideo.replace('youtu.be/', 'youtube.com/embed/')
+                                  : project.demoVideo.replace('watch?v=', 'embed/')}
+                                className="absolute top-0 left-0 w-full h-full"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm">
+                              Insert Demo Video Here
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* UI Showcase Placeholder */}
+                      <div>
+                        <h4 className="text-lg font-semibold text-[#E2E2E6] mb-4">User Interface Showcase</h4>
+                        <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                          {project.uiImage ? (
+                            <img 
+                              src={project.uiImage} 
+                              alt="User Interface Showcase" 
+                              className="w-full h-full object-contain"
+                            />
+                          ) : (
+                            <div className="w-full aspect-video flex items-center justify-center text-[#5A5E6B] text-sm bg-[#0F1115]">
+                              Insert UI Image Here
+                              <br />
+                              (User Interface Screenshot)
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="mb-8">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-full text-xs font-medium bg-[#2A3038] text-[#C4C6D0] hover:bg-[#363C48] hover:text-[#E2E2E6] transition-all hover:scale-105 cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : layoutStyle === 'harbor-safety-custom' ? (
+            <>
+              {/* Harbor Safety System Custom Layout */}
+              {/* Overview Section */}
+              <div className="mb-10">
+                <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                  <h3 className="text-2xl font-bold text-[#E2E2E6] mb-6">Overview</h3>
+                  <p className="text-[#C4C6D0] leading-relaxed text-base">
+                    {project.overview}
+                  </p>
+                </div>
+              </div>
+
+              {/* How Section with Two Features */}
+              {project.howSection && (
+                <div className="mb-10">
+                  <div className="bg-gradient-to-br from-[#1E2228] to-[#1A1D24] p-8 rounded-3xl border border-[#2A3038] shadow-xl">
+                    <h3 className="text-2xl font-bold text-[#E2E2E6] mb-8">{project.howSection.title}</h3>
+                    
+                    {/* Fall Warning */}
+                    <div className="mb-8">
+                      <h4 className="text-xl font-semibold text-[#E2E2E6] mb-4">{project.howSection.fallWarning.title}</h4>
+                      <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                        {project.howSection.fallWarning.description}
+                      </p>
+                      
+                      {/* Image Placeholder 1 - Fall Warning */}
+                      <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                        {project.howSection.fallWarning.image ? (
+                          <img 
+                            src={project.howSection.fallWarning.image} 
+                            alt="AMR Fall Warning System" 
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                            Insert Fall Warning Image
+                            <br />
+                            (ToF Sensor Placement & DBSCAN Result)
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Obstacle Warning */}
+                    <div>
+                      <h4 className="text-xl font-semibold text-[#E2E2E6] mb-4">{project.howSection.obstacleWarning.title}</h4>
+                      <p className="text-[#C4C6D0] leading-relaxed text-base mb-6">
+                        {project.howSection.obstacleWarning.description}
+                      </p>
+                      
+                      {/* Image Placeholder 2 - Obstacle Warning */}
+                      <div className="rounded-2xl overflow-hidden bg-white border border-[#2A3038] p-4">
+                        {project.howSection.obstacleWarning.image ? (
+                          <img 
+                            src={project.howSection.obstacleWarning.image} 
+                            alt="AMR Obstacle Warning System" 
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <div className="w-full h-full min-h-[400px] flex items-center justify-center text-[#5A5E6B] text-sm bg-[#1E2228]">
+                            Insert Obstacle Warning Image
+                            <br />
+                            (2D LiDAR Coverage & RVIZ Result)
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

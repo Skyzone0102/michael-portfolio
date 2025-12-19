@@ -30,6 +30,11 @@ import turfPipelineImg from '../src/assets/turf/turf_pipeline.png';
 import turfLabelImg from '../src/assets/turf/turf_label.png';
 import turfModelImg from '../src/assets/turf/turf_model.png';
 import turfProfileImg from '../src/assets/turf/turf_profile.jpg';
+import harborFallImg from '../src/assets/Harbor/harbor_first.png';
+import harborObstacleImg from '../src/assets/Harbor/harbor_second.png';
+import harborCardImg from '../src/assets/Harbor/harbor_card.png';
+import yogaUiImg from '../src/assets/ai_pose/yoga_ui.png';
+import yogaDemoImg from '../src/assets/ai_pose/yoga_card.png';
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -242,7 +247,54 @@ export default function Portfolio() {
       title: "Harbor Safety System",
       description: "Developed ROS 2 program using ToF sensors and DBSCAN algorithm to prevent AMR from falling at harbor edges.",
       emoji: "⚓",
-      tags: ["Robotics"]
+      tags: ["Robotics"],
+      layoutStyle: 'harbor-safety-custom',
+      imageSrc: harborCardImg,
+      overview: "Developed a program in ROS 2 using 64px ToF sensors and DBSCAN algorithm to differentiate planes. Merged point clouds from 2 2D LiDARs, enabling detection of nearby obstacles. Prevented AMR from falling at harbor edges and warned against close obstacles for safe operation.",
+      howSection: {
+        title: "How?",
+        fallWarning: {
+          title: "AMR Fall Warning",
+          description: "Utilizing 64 pixel ToF sensor from ESPROS. Serial communication by Pyserial. Used DBSCAN to differentiate two planes, which is the dock and the sea.",
+          image: harborFallImg
+        },
+        obstacleWarning: {
+          title: "AMR Obstacle Warning",
+          description: "Utilizing two 270° Sick 2D LIDAR to sense the surrounding. Shifting coordinate and merge the two point cloud. Use RVIZ to visualize result.",
+          image: harborObstacleImg
+        }
+      },
+      technologies: ["ROS 2", "Python", "DBSCAN", "Time-of-Flight Sensor", "Sick 2D LiDAR", "Pyserial", "RVIZ", "Point Cloud Processing"],
+      duration: "Research Project",
+      teamSize: "Team Project"
+    },
+    {
+      title: "Handsome Yoga: AI-Powered Pose Guidance",
+      description: "AI-driven guidance system designed to enhance the safety and effectiveness of home yoga practice using computer vision.",
+      emoji: "🧘",
+      tags: ["AI"],
+      layoutStyle: 'handsome-yoga-custom',
+      imageSrc: yogaDemoImg,
+      overview: "Handsome Yoga is an AI-driven guidance system designed to enhance the safety and effectiveness of home yoga practice. By utilizing computer vision to analyze postures in real-time, the system addresses the injury risks associated with practicing without professional supervision.",
+      technicalDetails: {
+        sections: [
+          {
+            title: "Implementation",
+            content: "The project features a custom machine learning pipeline that processes live camera footage to provide immediate feedback:\n\nData Extraction: The system uses MediaPipe to extract 33 body landmarks, which are compressed into x, y, z coordinates for efficient model training.\n\nNeural Network: A Multilayer Perceptron (MLP) model, consisting of two hidden layers (128 and 64 neurons), classifies specific poses such as Tree and Warrior II.\n\nAngle Analysis: Joint angles are calculated and compared against 'ideal' ranges established using the Interquartile Range (IQR) method to remove statistical outliers.\n\nOptimization: A 'Standing' state was added to the training data to significantly reduce false positives and prevent the misclassification of everyday movements as incorrect poses."
+          }
+        ]
+      },
+      results: [
+        "Stable, interactive experience combining visual skeleton overlays with corrective instructions",
+        "Successfully reduced false positives through Standing state optimization",
+        "Real-time pose classification for Tree and Warrior II poses",
+        "Accurate joint angle analysis using IQR-based ideal ranges"
+      ],
+      technologies: ["Python", "MediaPipe", "MLP Neural Network", "Computer Vision", "NumPy", "Real-time Processing", "IQR Analysis"],
+      duration: "AI/CV Project",
+      teamSize: "Individual Project",
+      demoVideo: "https://youtu.be/RBnNu08OnBw",
+      uiImage: yogaUiImg
     },
     // {
     //   title: "Drone-Based Waste Management",
