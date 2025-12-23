@@ -18,7 +18,7 @@ export default function ResearchJointMotion() {
             Development of a Smart Cadaveric Limb Motion Simulator for Physiologically Relevant In-Vitro Biomechanical Evaluation of Small Joints
           </h1>
           <p className="text-[#C4C6D0] text-lg mb-2">
-            C. Y. Hong<sup>1,*</sup>, C. H. Chou<sup>1,*</sup>, K. L. Wu<sup>1</sup>, I. Ji. Wang<sup>1</sup>, D. R. Li<sup>1</sup>
+            Chen-Ye Hong<sup>1,*</sup>, Chih-Hao Chou<sup>1,*</sup>, Yi-Ji Wang<sup>1</sup>, Kuan-Lin Wu<sup>1</sup>, Dian-Ru Li<sup>1</sup>
           </p>
           <p className="text-[#8A8D98] text-sm mb-8">
             <sup>1</sup>Smart & Advanced Manufacturing Lab, National Taiwan University (NTU), <sup>*</sup>Equal contribution

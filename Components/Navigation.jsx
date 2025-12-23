@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Download, Menu, X } from 'lucide-react';
+import cvPdf from '../src/assets/Chou_Chih_Hao_CV.pdf';
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState('about');
@@ -82,6 +83,7 @@ export default function Navigation() {
             ))}
 
             <Button 
+              onClick={() => window.open(cvPdf, '_blank')}
               className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-medium transition-colors bg-[#A8C7FA] hover:bg-[#C5DAFC] text-[#062E6F] border-0"
             >
               <Download className="w-4 h-4 mr-2" />
@@ -117,6 +119,7 @@ export default function Navigation() {
               ))}
               
               <Button 
+                onClick={() => window.open(cvPdf, '_blank')}
                 className="inline-flex items-center justify-center w-full py-2.5 rounded-full text-sm font-medium bg-[#A8C7FA] hover:bg-[#C5DAFC] text-[#062E6F] border-0"
               >
                 <Download className="w-4 h-4 mr-2" />

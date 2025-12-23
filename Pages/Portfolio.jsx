@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { tagThemes } from '@/utils';
 import Navigation from '../Components/Navigation';
 import HeroSection from '../Components/HeroSection';
 import ResearchCard from '../Components/ResearchCard';
 import ProjectCard from '../Components/ProjectCard';
 import ProjectModal from '../Components/ProjectModal';
 import sphericalRobotImg from '../src/assets/sphere/spherical_robot.jpeg';
+import ralPdf from '../src/assets/2025_RAL_Mosphero.pdf';
 import rabbitGroupImg from '../src/assets/rabbit/rabbit_group.jpg';
 import amrSlamImg from '../src/assets/mobile_robot/amr_slam.png';
 import amrSegImg from '../src/assets/mobile_robot/amr_seg.png';
@@ -45,7 +47,7 @@ export default function Portfolio() {
       title: "Street Sweeping Mobile Robot",
       description: "Implemented SLAM using Fast-LIO and NDT, applied semantic segmentation with Open3D-ML, trained PointPillars model.",
       emoji: "🤖",
-      tags: ["Robotics", "AI"],
+      tags: ["Computer Vision", "Sensors"],
       layoutStyle: 'custom-two-part',
       overview: "A two-part research project developing advanced autonomous navigation and semantic understanding capabilities for mobile robots and autonomous vehicles.",
       imageSrc: amrCollectImg,
@@ -80,7 +82,7 @@ export default function Portfolio() {
       title: "Aero Rider (Capstone Project)",
       description: "Led team to design autonomous wind-powered vehicle with PD control, IMU fusion, and dual sail steering system.",
       emoji: "✈️",
-      tags: ["Robotics", "Mechatronics", "Hardware"],
+      tags: ["Design", "Mechatronics", "Sensors"],
       layoutStyle: 'aero-rider-custom',
       imageSrc: aeroPhotoImg,
       overview: "Aero Rider is an autonomous, wind-powered vehicle developed for the 2024 Mechanical Engineering Capstone. The objective was to engineer a robot capable of navigating a complex track using only wind energy for propulsion and control. By integrating mechanical design with mechatronic systems, the vehicle adjusts its sail geometry in real-time to maintain stability and optimize trajectory against varying wind fields.",
@@ -123,7 +125,7 @@ export default function Portfolio() {
       title: "Stair Climbing Robot",
       description: "Designed mobile robot with human-following and stair-climbing via dual-chassis structure and RRR manipulator.",
       emoji: "🎯",
-      tags: ["Robotics"],
+      tags: ["Design", "Mechatronics", "Sensors"],
       layoutStyle: 'ascend-custom',
       imageSrc: ascendPicImg,
       overview: "ASCEND (Autonomous Stair Climbing and Escort for Navigation and Delivery) is an articulated robot designed to autonomously transport heavy loads up stairs and track users on flat ground.",
@@ -163,7 +165,7 @@ export default function Portfolio() {
       title: "Robotic BackFlip Cat",
       description: "Engineered spring-loaded leg mechanism with motor-rope system to execute a backflip using Arduino control.",
       emoji: "🐱",
-      tags: ["Robotics", "Hardware"],
+      tags: ["Design", "Mechatronics"],
       layoutStyle: 'backflip-cat-custom',
       imageSrc: backflipProfileImg,
       overview: "Developed during the 2023 MakeNTU competition, this project engineered a quadruped robot capable of performing a backflip. Inspired by a popular internet meme, the goal was to achieve dynamic movement using a novel mechanical design within a limited prototyping timeframe.",
@@ -194,7 +196,7 @@ export default function Portfolio() {
       title: "LOCUS",
       description: "Developed lockbox for timed focus with OpenCV face detection, water-mist deterrent, and immersive study modes.",
       emoji: "📦",
-      tags: ["Hardware"],
+      tags: ["Design", "Computer Vision"],
       layoutStyle: 'locus-custom',
       imageSrc: locusProfileImg,
       overview: "LOCUS is a smart productivity device designed to combat smartphone addiction by physically securing the user's phone. It fosters deep work by creating immersive sensory environments—controlling music, lighting, and scent—while employing a gamified penalty system that sprays water and captures photos to deter users from giving up early.",
@@ -212,7 +214,7 @@ export default function Portfolio() {
       title: "Turf AI",
       description: "Built ROS 2 turf monitoring system with AI segmentation, GNSS heatmaps, and dual U-Net models for grass analysis.",
       emoji: "🌱",
-      tags: ["AI", "Robotics"],
+      tags: ["Computer Vision", "Sensors"],
       layoutStyle: 'turf-ai-custom',
       imageSrc: turfProfileImg,
       overview: "A University-Industry collaboration designed to generate comprehensive lawn health reports. The system utilizes a robotic mower equipped with Camera, GPS, and IMU sensors to survey turf during operation. The raw data is processed to produce high-resolution heatmaps indicating grass coverage and greenness levels for the client.",
@@ -247,7 +249,7 @@ export default function Portfolio() {
       title: "Harbor Safety System",
       description: "Developed ROS 2 program using ToF sensors and DBSCAN algorithm to prevent AMR from falling at harbor edges.",
       emoji: "⚓",
-      tags: ["Robotics"],
+      tags: ["Computer Vision","Sensors"],
       layoutStyle: 'harbor-safety-custom',
       imageSrc: harborCardImg,
       overview: "Developed a program in ROS 2 using 64px ToF sensors and DBSCAN algorithm to differentiate planes. Merged point clouds from 2 2D LiDARs, enabling detection of nearby obstacles. Prevented AMR from falling at harbor edges and warned against close obstacles for safe operation.",
@@ -272,7 +274,7 @@ export default function Portfolio() {
       title: "Handsome Yoga: AI-Powered Pose Guidance",
       description: "AI-driven guidance system designed to enhance the safety and effectiveness of home yoga practice using computer vision.",
       emoji: "🧘",
-      tags: ["AI"],
+      tags: ["Computer Vision"],
       layoutStyle: 'handsome-yoga-custom',
       imageSrc: yogaDemoImg,
       overview: "Handsome Yoga is an AI-driven guidance system designed to enhance the safety and effectiveness of home yoga practice. By utilizing computer vision to analyze postures in real-time, the system addresses the injury risks associated with practicing without professional supervision.",
@@ -361,8 +363,8 @@ export default function Portfolio() {
                 description="Designed modular frame with 2-DOF bevel gear mechanism, developed hybrid control strategy with Lagrangian dynamics modeling and Vicon validation."
                 pageName="ResearchPendulumRobot"
                 emoji="🤖"
-                pdfLink="#"
-                videoLink="#"
+                pdfLink={ralPdf}
+                videoLink="https://youtu.be/cFQBmcPqyFs"
                 imageSrc={sphericalRobotImg}
               />
             </motion.div>
@@ -395,13 +397,6 @@ export default function Portfolio() {
           {/* Tag Filters */}
           <div className="flex flex-wrap justify-center gap-3 mb-8 md:mb-12">
             {allTags.map((tag) => {
-              const tagThemes = {
-                'Robotics': { primary: '#6DD58C', onPrimary: '#0A3818' },
-                'AI': { primary: '#D0BCFF', onPrimary: '#381E72' },
-                'Hardware': { primary: '#FFB784', onPrimary: '#4F2500' },
-                'Autonomous': { primary: '#4FD8EB', onPrimary: '#00363D' },
-                'Mechatronics': { primary: '#DCC48C', onPrimary: '#3E2E04' }
-              };
               const theme = selectedTag === tag ? (tagThemes[tag] || { primary: '#A8C7FA', onPrimary: '#062E6F' }) : null;
               
               return (

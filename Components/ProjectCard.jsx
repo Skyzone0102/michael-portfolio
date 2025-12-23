@@ -1,4 +1,5 @@
 import React from 'react';
+import { tagThemes } from '@/utils';
 
 export default function ProjectCard({ title, description, emoji = '🚀', tags = [], onClick, selectedTag, imageSrc }) {
   return (
@@ -35,13 +36,6 @@ export default function ProjectCard({ title, description, emoji = '🚀', tags =
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-auto">
           {tags.map((tag, index) => {
-            const tagThemes = {
-              'Robotics': { primary: '#6DD58C', onPrimary: '#0A3818' },
-              'AI': { primary: '#D0BCFF', onPrimary: '#381E72' },
-              'Hardware': { primary: '#FFB784', onPrimary: '#4F2500' },
-              'Autonomous': { primary: '#4FD8EB', onPrimary: '#00363D' },
-              'Mechatronics': { primary: '#DCC48C', onPrimary: '#3E2E04' }
-            };
             const theme = tagThemes[tag] || { primary: '#A8C7FA', onPrimary: '#062E6F' };
             return (
               <span

@@ -1,14 +1,16 @@
 import React from 'react';
-import { Mail, GraduationCap, Github, Linkedin, FileText, Instagram } from 'lucide-react';
+import { Mail, GraduationCap, Github, Linkedin, FileText, Instagram, Download } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 import profileImage from '../src/assets/square_profile.jpg';
+import cvPdf from '../src/assets/Chou_Chih_Hao_CV.pdf';
 
 export default function HeroSection() {
   const socialLinks = [
     { icon: Mail, href: 'mailto:michaelchou0102.app@gmail.com', label: 'Email' },
     { icon: Instagram, href: 'https://www.instagram.com/michaelchou_0102/', label: 'Instagram' },
     { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: FileText, href: '#', label: 'CV' }
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/chih-hao-chou', label: 'LinkedIn' },
+    { icon: FileText, href: cvPdf, label: 'CV', target: '_blank' }
   ];
 
   const interests = [
@@ -68,6 +70,8 @@ export default function HeroSection() {
                 <a
                   key={index}
                   href={social.href}
+                  target={social.target || '_self'}
+                  rel={social.target === '_blank' ? 'noopener noreferrer' : undefined}
                   title={social.label}
                   className="w-10 h-10 rounded-3xl flex items-center justify-center transition-colors duration-300 bg-[#1E2228] hover:bg-[#2A3038]"
                 >
@@ -94,17 +98,17 @@ export default function HeroSection() {
             {/* Paragraph 2 */}
             <p className="text-sm md:text-base text-[#C4C6D0] leading-relaxed mb-4">
               I have conducted research at the {' '}
-              <a href="#" className="text-[#A8C7FA] hover:underline">Bio-Inspired Robotics Lab</a>
+              <a href="http://biorola.me.ntu.edu.tw/aboutus_introduction.html" className="text-[#A8C7FA] hover:underline">Bio-Inspired Robotics Lab</a>
               {' '} advised by{' '}
-              <a href="#" className="text-[#A8C7FA] hover:underline">Prof. Pei-Chun Lin</a>
+              <a href="https://www.me.ntu.edu.tw/web/admission/admission_in.jsp?fp_id=FP1762746860137" className="text-[#A8C7FA] hover:underline">Prof. Pei-Chun Lin</a>
               , where I developed a dual-mode spherical robot capable of omnidirectional locomotion. I also investigated kinematic stability for artificial joints at the {' '}
-              <a href="#" className="text-[#A8C7FA] hover:underline">Smart & Advanced Manufacturing Lab</a>
+              <a href="https://ntusamlab.com/" className="text-[#A8C7FA] hover:underline">Smart & Advanced Manufacturing Lab</a>
               {' '} advised by{' '}
-              <a href="#" className="text-[#A8C7FA] hover:underline">Prof. Dian-Ru Li</a>
+              <a href="https://www.me.ntu.edu.tw/web/admission/admission_in.jsp?fp_id=FP1762709291802" className="text-[#A8C7FA] hover:underline">Prof. Dian-Ru Li</a>
               , and implemented SLAM and 3D semantic segmentation for autonomous robots at the {' '}
-              <a href="#" className="text-[#A8C7FA] hover:underline">Intelligent Vehicle & Mechatronics Lab</a>
+              <a href="http://140.112.14.7/~kangli1234/IVMechatronics/" className="text-[#A8C7FA] hover:underline">Intelligent Vehicle & Mechatronics Lab</a>
               , advised by{' '}
-              <a href="#" className="text-[#A8C7FA] hover:underline">Prof. Kang Li</a>.
+              <a href="https://www.me.ntu.edu.tw/web/admission/admission_in.jsp?fp_id=FP1762747721424" className="text-[#A8C7FA] hover:underline">Prof. Kang Li</a>.
             </p>
 
             {/* Paragraph 3 */}
